@@ -75,5 +75,10 @@ object TheMovieDatabaseAPI {
         @GET("/$API_VERSION/person/{id}/combined_credits")
         fun fetchCredits(@Path("id") id: Int): Call<PersonCreditsResponse>
     }
+
+    interface SearchService {
+        @GET("/$API_VERSION/search/movie")
+        fun fetchQueryList(@Query("query") query: String): Call<MoviesResponse>
+    }
 }
 

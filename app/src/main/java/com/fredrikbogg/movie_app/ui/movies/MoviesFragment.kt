@@ -1,19 +1,30 @@
 package com.fredrikbogg.movie_app.ui.movies
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.switchMap
 import androidx.navigation.fragment.findNavController
+import com.fredrikbogg.movie_app.data.model.Event
 import com.fredrikbogg.movie_app.data.model.EventObserver
+import com.fredrikbogg.movie_app.data.model.GoToMovie
 import com.fredrikbogg.movie_app.databinding.FragmentMoviesBinding
 import com.fredrikbogg.movie_app.ui.BaseFragment
+import com.fredrikbogg.movie_app.ui.adapter.MovieListAdapter
+import com.fredrikbogg.movie_app.ui.binding.bindMovieList
+import com.fredrikbogg.movie_app.ui.person_details.PersonDetailsViewModel
+import com.fredrikbogg.movie_app.ui.person_details.PersonDetailsViewModelFactory
+import com.fredrikbogg.movie_app.util.extension.appendList
+import com.fredrikbogg.movie_app.util.extension.liveDataBlockScope
 import com.fredrikbogg.movie_app.util.extension.showSnackBar
 
 class MoviesFragment : BaseFragment(false) {
 
-    private val viewModel: MoviesViewModel by viewModels()
+    private val viewModel: MoviesViewModel by viewModels ()
     private lateinit var viewDataBinding: FragmentMoviesBinding
 
     override fun onCreateView(
