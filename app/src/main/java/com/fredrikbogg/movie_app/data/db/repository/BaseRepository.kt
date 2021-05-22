@@ -20,9 +20,9 @@ abstract class BaseRepository {
     ) =
         withContext(Dispatchers.IO) {
             call().request { response ->
-                response.onSuccess { data?.let { result.postValue(it) } }
-                response.onException { message?.let { errorText(it) } }
-                response.onFailure { message?.let { errorText(it) } }
+                response.onSuccess { data?.let { result.postValue(it)} }
+                response.onException { message?.let { errorText(it)} }
+                response.onFailure { message?.let { errorText(it)} }
             }
             result.apply { postValue(null) }
         }

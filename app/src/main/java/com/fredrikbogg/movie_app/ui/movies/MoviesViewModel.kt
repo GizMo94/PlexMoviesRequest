@@ -4,6 +4,7 @@ import android.util.Log
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.lifecycle.*
+import com.fredrikbogg.movie_app.data.db.repository.MediaRepository
 import com.fredrikbogg.movie_app.data.db.repository.MovieRepository
 import com.fredrikbogg.movie_app.data.db.repository.SearchRepository
 import com.fredrikbogg.movie_app.data.model.Event
@@ -19,6 +20,7 @@ class MoviesViewModel() : BaseViewModel(), GoToMovie {
 
     private val movieRepository = MovieRepository()
     private val searchRepository = SearchRepository()
+    private val mediaRepository = MediaRepository()
 
     private val moviesPage = MutableLiveData<Int>().apply { value = 1 }
     private val searchPage = MutableLiveData<String>().apply { value = "" }

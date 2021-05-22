@@ -1,5 +1,6 @@
 package com.fredrikbogg.movie_app.util.extension
 
+import android.util.Log
 import com.fredrikbogg.movie_app.data.model.network.APIResponse
 import retrofit2.Call
 import retrofit2.Response
