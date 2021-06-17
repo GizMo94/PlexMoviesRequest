@@ -1,5 +1,6 @@
 package com.fredrikbogg.movie_app.ui.binding
 
+import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.fredrikbogg.movie_app.data.model.*
@@ -36,7 +37,7 @@ fun RecyclerView.bindCreditsList(items: List<Credit>?, goTo: GoToCredit) {
 }
 
 @BindingAdapter("bind_movie_list", "bind_load_more", "bind_view_model")
-fun RecyclerView.bindMovieList(
+fun RecyclerView.bindMoviesList(
     items: List<Movie>?,
     loadMoreContent: () -> Unit,
     goTo: GoToMovie
@@ -62,3 +63,17 @@ fun RecyclerView.bindTvShowList(
     }
     (this.adapter as TvShowListAdapter).submitList(items)
 }
+
+@BindingAdapter("bind_torrent_list","load_more_content")
+fun RecyclerView.bindTorrentsList(items: List<Torrent>?, loadMoreContent: Boolean) {
+    if (items == null)
+        return
+    if (this.adapter == null)
+        this.adapter = TorrentListAdapter()
+    if (!loadMoreContent && items.size >= 5)
+        (this.adapter as TorrentListAdapter).submitList(items.subList(0, 5))
+    else
+        (this.adapter as TorrentListAdapter).submitList(items)
+}
+
+

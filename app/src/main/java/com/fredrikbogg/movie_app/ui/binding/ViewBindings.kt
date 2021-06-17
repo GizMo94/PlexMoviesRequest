@@ -1,7 +1,10 @@
 package com.fredrikbogg.movie_app.ui.binding
 
+import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.databinding.BindingAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+
 
 @BindingAdapter("bind_visibility_null_list")
 fun View.bindViewVisibilityNullList(items: List<Any>?) {
@@ -29,3 +32,15 @@ fun View.bindViewVisibilityHideEmptyString(string: String?) {
         this.visibility = View.VISIBLE
     }
 }
+
+@BindingAdapter("bind_visibility_hide_on_click")
+fun View.booleanToVisibility(isNotVisible: Boolean) {
+    this.visibility = if (isNotVisible) View.GONE else View.VISIBLE
+}
+
+@BindingAdapter("android:src")
+fun View.setImageDrawable(drawable: Drawable?) {
+    this.setImageDrawable(drawable)
+}
+
+

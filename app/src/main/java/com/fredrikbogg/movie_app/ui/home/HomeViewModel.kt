@@ -5,6 +5,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.switchMap
 import com.fredrikbogg.movie_app.data.db.repository.MovieRepository
+import com.fredrikbogg.movie_app.data.db.repository.TorrentRepository
 import com.fredrikbogg.movie_app.data.model.CombinedLiveData
 import com.fredrikbogg.movie_app.data.model.Event
 import com.fredrikbogg.movie_app.data.model.GoToMovie
@@ -14,10 +15,12 @@ import com.fredrikbogg.movie_app.data.model.entity.Movie
 import com.fredrikbogg.movie_app.ui.BaseViewModel
 import com.fredrikbogg.movie_app.util.extension.appendList
 import com.fredrikbogg.movie_app.util.extension.liveDataBlockScope
+import okhttp3.ResponseBody
 
 class HomeViewModel : BaseViewModel(), GoToMovie {
 
     private val movieRepository = MovieRepository()
+    private val torrentRepository = TorrentRepository()
     private val combinedLiveData: CombinedLiveData<Movie, List<Genre>>
     private val genres: LiveData<List<Genre>>
 
@@ -51,7 +54,9 @@ class HomeViewModel : BaseViewModel(), GoToMovie {
 
         loadedInTheatersMovieList = inTheatersPage.switchMap {
             liveDataBlockScope {
-                movieRepository.loadInTheatersList(it) { mSnackBarText.postValue(Event(it)) }
+                movieRepository.loadInTheatersList(it) {
+                    mSnackBarText.postValue(Event(it))
+                }
             }
         }
 
@@ -101,6 +106,7 @@ class HomeViewModel : BaseViewModel(), GoToMovie {
                     result.second?.find { genre -> genre.id == genreId }
             }
         }
+
     }
 
     fun loadMorePopular() {

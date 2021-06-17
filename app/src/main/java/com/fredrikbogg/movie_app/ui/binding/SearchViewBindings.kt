@@ -2,7 +2,6 @@ package com.fredrikbogg.movie_app.ui.binding
 
 import android.widget.SearchView
 import androidx.databinding.BindingAdapter
-import androidx.databinding.BindingMethods
 
 
 @BindingAdapter("search_listener")

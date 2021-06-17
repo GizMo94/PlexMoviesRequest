@@ -71,6 +71,7 @@
             app:layout_constraintTop_toBottomOf="@id/topGuideline">
 
             <ScrollView
+                android:id="@+id/scroll_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
@@ -249,9 +250,17 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="0dp"
                                     android:layout_marginStart="8dp"
+                                    android:background="@{(viewmodel.media.videos[0].title.equals(viewmodel.movie.title)) ? null : @drawable/shape_rounded_rectangle }"
+                                    android:backgroundTint="@{(viewmodel.media.videos[0].title.equals(viewmodel.movie.title)) ?  0 :  @color/colorAccent }"
+                                    android:clickable="@{(viewmodel.media.videos[0].title.equals(viewmodel.movie.title)) ? false : true }"
                                     android:gravity="center_vertical"
-                                    android:textSize="12sp"
+                                    android:onClick="@{() -> viewmodel.onDownloadClick()}"
+                                    android:paddingLeft="@{(viewmodel.media.videos[0].title.equals(viewmodel.movie.title)) ? 0 : 16 }"
+                                    android:paddingTop="@{(viewmodel.media.videos[0].title.equals(viewmodel.movie.title)) ? 0 : 1 }"
+                                    android:paddingRight="@{(viewmodel.media.videos[0].title.equals(viewmodel.movie.title)) ? 0 : 16 }"
+                                    android:paddingBottom="@{(viewmodel.media.videos[0].title.equals(viewmodel.movie.title)) ? 0 : 1 }"
                                     android:text="@{(viewmodel.media.videos[0].title.equals(viewmodel.movie.title)) ? @string/y_available : @string/n_available }"
+                                    android:textSize="12sp"
                                     app:layout_constraintBottom_toBottomOf="@id/plexLogo"
                                     app:layout_constraintLeft_toRightOf="@id/plexLogo"
                                     app:layout_constraintTop_toTopOf="@id/plexLogo" />
@@ -262,6 +271,61 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
+                    <TextView
+                        android:id="@+id/torrentText"
+                        style="@style/NunitoSemiBoldStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@{viewmodel.torrentList.empty ? @string/n_torrent : @string/y_torrent}"
+                        android:textSize="18sp"
+                        app:bind_visibility_hide_on_click="@{viewmodel.isDownloadable}" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/torrentRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/shape_rounded_rectangle_stroke_only"
+                        android:nestedScrollingEnabled="false"
+                        android:orientation="vertical"
+                        app:bind_torrent_list="@{viewmodel.torrentList}"
+                        app:bind_visibility_hide_on_click="@{viewmodel.isDownloadable}"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:load_more_content="@{viewmodel.hideOrShow}"
+                        tools:listitem="@layout/list_item_torrent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <TextView
+                        android:id="@+id/showMore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="3dp"
+                        android:alpha=".7"
+                        android:clickable="true"
+                        android:elevation="10dp"
+                        android:onClick="@{() -> viewmodel.onHideOrShowClick()}"
+                        android:text="@{viewmodel.hideOrShow ? @string/hide : @string/show}"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        app:bind_visibility_hide_on_click="@{viewmodel.torrentList.empty ? true : viewmodel.isDownloadable}"
+                        tools:text="Show More" />
+
+
+                    <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fab"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:fabSize="mini"
+                        android:contentDescription="showMore"
+                        android:elevation="8dp"
+                        android:onClick="@{() -> viewmodel.onHideOrShowClick()}"
+                        android:scaleType="center"
+                        android:src="@{viewmodel.hideOrShow ? @drawable/ic_baseline_keyboard_arrow_up_10 : @drawable/ic_baseline_keyboard_arrow_down_10}"
+                        app:bind_visibility_hide_on_click="@{viewmodel.torrentList.empty ? true : viewmodel.isDownloadable}" />-->
 
                     <TextView
                         android:id="@+id/overviewText"

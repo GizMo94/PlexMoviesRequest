@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import com.fredrikbogg.movie_app.data.model.entity.Torrent
 import kotlinx.coroutines.Dispatchers
 
 fun <T> ViewModel.liveDataBlockScope(block: suspend () -> LiveData<T>): LiveData<T> {

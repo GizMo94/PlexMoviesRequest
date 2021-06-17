@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="goToInterface"
+            type="com.fredrikbogg.movie_app.data.model.GoToCredit" />
+
+        <variable
+            name="torrent"
+            type="com.fredrikbogg.movie_app.data.model.entity.Torrent" />
+
+
+        <variable
+            name="viewmodel"
+            type="com.fredrikbogg.movie_app.ui.movie_details.MovieDetailsViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:background="@null"
+            android:onClick="@{() -> viewmodel.onDownloadClick(torrent.nfo)}"
+            app:layout_constraintBottom_toBottomOf="@+id/nameText"
+            app:layout_constraintEnd_toStartOf="@+id/nameText"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/nameText"
+            app:srcCompat="@drawable/ic_baseline_download_20" />
+
+        <TextView
+            android:id="@+id/nameText"
+            style="@style/NunitoSemiBoldStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:alpha=".8"
+            android:ellipsize="end"
+            android:text="@{torrent.name}"
+            android:textSize="9sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/sizeText"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight="6"
+            app:layout_constraintStart_toEndOf="@+id/imageButton"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Torrent Name" />
+
+        <TextView
+            android:id="@+id/sizeText"
+            style="@style/NunitoSemiBoldStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:alpha=".8"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:text="@{torrent.size}"
+            android:textSize="9sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/seedText"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/nameText"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Size" />
+
+        <TextView
+            android:id="@+id/seedText"
+            style="@style/NunitoSemiBoldStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:alpha=".8"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:text="@{torrent.seed}"
+            android:textColor="@color/colorGreen"
+            android:textSize="9sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/leechText"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/sizeText"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Seed" />
+
+        <TextView
+            android:id="@+id/leechText"
+            style="@style/NunitoSemiBoldStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:alpha=".8"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:text="@{torrent.leech}"
+            android:textColor="@color/colorAccent"
+            android:textSize="9sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/seedText"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Leech" />
+
+        <!--TODO : Accentuer la couleur du divider-->
+        <View
+            android:id="@+id/divider"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:divider="?android:listDivider"
+            android:background="?android:attr/listDivider"
+            android:backgroundTint="@color/colorGreen"
+            android:dividerPadding="5dp"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

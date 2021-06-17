@@ -1,12 +1,16 @@
 package com.fredrikbogg.movie_app.data.db.repository
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.fredrikbogg.movie_app.data.model.network.BaseListResponse
 import com.fredrikbogg.movie_app.data.model.network.BasePageListResponse
 import com.fredrikbogg.movie_app.util.extension.onException
 import com.fredrikbogg.movie_app.util.extension.onFailure
 import com.fredrikbogg.movie_app.util.extension.onSuccess
 import com.fredrikbogg.movie_app.util.extension.request
+import io.reactivex.Observable
+import io.reactivex.Single
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Call

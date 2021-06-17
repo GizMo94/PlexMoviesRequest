@@ -15,7 +15,6 @@ import com.fredrikbogg.movie_app.data.model.GoToMovie
 import com.fredrikbogg.movie_app.databinding.FragmentMoviesBinding
 import com.fredrikbogg.movie_app.ui.BaseFragment
 import com.fredrikbogg.movie_app.ui.adapter.MovieListAdapter
-import com.fredrikbogg.movie_app.ui.binding.bindMovieList
 import com.fredrikbogg.movie_app.ui.person_details.PersonDetailsViewModel
 import com.fredrikbogg.movie_app.ui.person_details.PersonDetailsViewModelFactory
 import com.fredrikbogg.movie_app.util.extension.appendList

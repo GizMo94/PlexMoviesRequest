@@ -20,4 +20,9 @@
     <string name="highlighted_movie_image">highlighted movie image</string>
     <string name="y_available">Available on Plex</string>
     <string name="n_available">Download it</string>
+    <string name="n_torrent">No Torrent available</string>
+    <string name="y_torrent">Torrent</string>
+    <string name="show">Show more </string>
+    <string name="hide">Hide</string>
+    <string name="ex">240761</string>
 </resources>
